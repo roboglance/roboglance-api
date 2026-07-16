@@ -1,7 +1,7 @@
 [project]
 name = "roboglance"
 version = "0.1.0"
-description = "Add your description here"
+description = "The backend API of RoboGlance."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
