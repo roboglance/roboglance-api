@@ -1,0 +1,11 @@
+{
+  "configurations": [
+    {
+      "name": "Python Debugger: RoboGlance API",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["app.main:app", "--reload"]
+    }
+  ]
+}
