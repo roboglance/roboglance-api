@@ -1,9 +1,18 @@
-import os
-from fastapi import FastAPI
+from functools import lru_cache
+from typing import Annotated
+
+from fastapi import Depends, FastAPI
 from pydantic import BaseModel
 from httpx import AsyncClient
 
+from .settings import RoboGlanceSettings
+
 app = FastAPI()
+
+
+@lru_cache
+def get_settings():
+    return RoboGlanceSettings()
 
 
 class RoboGlanceStatus(BaseModel):
@@ -11,12 +20,11 @@ class RoboGlanceStatus(BaseModel):
     the_blue_alliance_healthy: bool
 
 
-tba_api_key = os.getenv("THE_BLUE_ALLIANCE_API_KEY")
-
-
 @app.get("/status")
-async def read_status() -> RoboGlanceStatus:
-    tba_healthy = await is_tba_healthy(tba_api_key)
+async def read_status(
+    settings: Annotated[RoboGlanceSettings, Depends(get_settings)],
+) -> RoboGlanceStatus:
+    tba_healthy = await is_tba_healthy(settings.tba_api_key)
 
     results = RoboGlanceStatus(
         healthy=tba_healthy,
