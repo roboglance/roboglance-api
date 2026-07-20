@@ -15,7 +15,9 @@ def get_settings():
     return RoboGlanceSettings()
 
 
-def get_tba_service(settings: Annotated[RoboGlanceSettings, Depends(get_settings)]):
+async def get_tba_service(
+    settings: Annotated[RoboGlanceSettings, Depends(get_settings)],
+):
     if settings.tba_api_key is None:
         raise HTTPException(
             status_code=500,
