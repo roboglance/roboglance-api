@@ -4,7 +4,7 @@ from typing import Annotated
 from fastapi import Depends, FastAPI
 from pydantic import BaseModel
 
-from .tba_client import TbaClient
+from .tba_service import TbaService
 from .settings import RoboGlanceSettings
 
 app = FastAPI()
@@ -24,7 +24,7 @@ class RoboGlanceStatus(BaseModel):
 async def read_status(
     settings: Annotated[RoboGlanceSettings, Depends(get_settings)],
 ) -> RoboGlanceStatus:
-    tba_healthy = await TbaClient.is_tba_healthy(settings.tba_api_key)
+    tba_healthy = await TbaService.is_tba_healthy(settings.tba_api_key)
 
     results = RoboGlanceStatus(
         healthy=tba_healthy,
