@@ -10,14 +10,9 @@ The backend processes live match data to keep the client smartwatch app up-to-da
 
 These instructions are for developing the RoboGlance API in VS Code.
 
-### Prerequisites
-
-1. install
+1. install prerequisites
    - [VS Code](https://code.visualstudio.com/Download)
    - [uv](https://docs.astral.sh/uv/getting-started/installation/)
-
-### Steps
-
 1. clone the git repository
 1. open the git repository in VS Code
 1. configure Git to rebase by default when pulling in this repository
@@ -31,7 +26,7 @@ These instructions are for developing the RoboGlance API in VS Code.
    ```
 1. copy this `.env` file in your repository root and add your api keys
    ```ini
-   ROBOGLANCE_TBA_API_KEY=<your read key> # get from https://www.thebluealliance.com/apidocs#apiv3
+   ROBOGLANCE_TBA_API_KEY=<your read API key> # get from https://www.thebluealliance.com/account
    ```
 1. run the development server
    - using the "Python Debugger: RoboGlance API" launch configuration in VS Code
@@ -41,7 +36,7 @@ These instructions are for developing the RoboGlance API in VS Code.
      ```
 1. open http://localhost:8000/docs to test endpoints
 1. format code with Ruff
-   - by enabling "Format on Save" in your user settings or using the "Format Document" command in VS Code
+   - by enabling "Format on Save" in your settings or using the "Format Document" command in VS Code
    - using the terminal
      ```sh
      uv run ruff format
