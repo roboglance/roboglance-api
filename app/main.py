@@ -2,6 +2,7 @@ from functools import lru_cache
 from typing import Annotated
 
 from fastapi import Depends, FastAPI, HTTPException
+from httpx import AsyncClient
 from pydantic import BaseModel
 
 from .tba_service import TbaService
@@ -24,7 +25,11 @@ async def get_tba_service(
             detail="Server configuration error. Missing API key for accessing The Blue Alliance.",
         )
 
-    return TbaService(settings.tba_api_key)
+    async with AsyncClient(
+        base_url="https://www.thebluealliance.com/api/v3",
+        headers={"X-TBA-Auth-Key": settings.tba_api_key},
+    ) as tba_client:
+        yield TbaService(tba_client)
 
 
 class RoboGlanceStatus(BaseModel):
