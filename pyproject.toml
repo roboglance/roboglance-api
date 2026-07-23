@@ -26,3 +26,4 @@ entrypoint = "app.main:app"
 strict = true
 addopts = ["--import-mode=importlib"]
 pythonpath = ["."]
+anyio_mode = "auto"
