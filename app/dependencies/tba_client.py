@@ -1,19 +1,13 @@
-from functools import lru_cache
 from typing import Annotated
 
 from fastapi import Depends, HTTPException
 from httpx import AsyncClient
 
-from app.settings import RoboGlanceSettings
-
-
-@lru_cache
-def get_settings():
-    return RoboGlanceSettings()
+from app.dependencies.settings import SettingsDependency
 
 
 async def get_tba_client(
-    settings: Annotated[RoboGlanceSettings, Depends(get_settings)],
+    settings: SettingsDependency,
 ):
     if settings.tba_api_key is None:
         raise HTTPException(
@@ -26,3 +20,6 @@ async def get_tba_client(
         headers={"X-TBA-Auth-Key": settings.tba_api_key},
     ) as tba_client:
         yield tba_client
+
+
+TbaClientDependency = Annotated[AsyncClient, Depends(get_tba_client)]
