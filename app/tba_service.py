@@ -2,9 +2,11 @@ from httpx import AsyncClient
 
 
 class TbaService:
+    _tba_client: AsyncClient
+
     def __init__(self, tba_client: AsyncClient):
-        self.tba_client = tba_client
+        self._tba_client = tba_client
 
     async def is_tba_healthy(self) -> bool:
-        response = await self.tba_client.get("/status")
+        response = await self._tba_client.get("/status")
         return response.is_success
