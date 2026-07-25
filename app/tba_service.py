@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi import Depends
 from httpx import AsyncClient
 
-from app.main import get_tba_client
+from app.dependencies import get_tba_client
 
 
 class TbaService:
