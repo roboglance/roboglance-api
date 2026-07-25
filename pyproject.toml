@@ -5,8 +5,10 @@ description = "The backend API of RoboGlance."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "fastapi[standard-no-fastapi-cloud-cli]>=0.140.0",
+    "fastapi>=0.140.0",
+    "fastapi-cli>=0.0.32",
     "httpx>=0.28.1",
+    "pydantic-settings>=2.14.2",
 ]
 
 [dependency-groups]
