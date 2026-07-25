@@ -1,9 +1,7 @@
-from typing import Annotated
-
-from fastapi import Depends, FastAPI
+from fastapi import FastAPI
 from pydantic import BaseModel
 
-from app.tba_service import TbaService
+from app.dependencies.tba_service import TbaServiceDependency
 
 app = FastAPI()
 
@@ -15,7 +13,7 @@ class RoboGlanceStatus(BaseModel):
 
 @app.get("/status")
 async def read_status(
-    tba_service: Annotated[TbaService, Depends(TbaService)],
+    tba_service: TbaServiceDependency,
 ) -> RoboGlanceStatus:
     tba_healthy = await tba_service.is_tba_healthy()
 
