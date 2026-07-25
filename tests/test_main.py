@@ -1,12 +1,12 @@
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 from fastapi.testclient import TestClient
 from pytest import fixture
 from pytest_mock import MockFixture, MockType
 
-
-from app.main import app
 from app.dependencies.tba_service import TbaService
+from app.main import app
 
 
 @fixture
