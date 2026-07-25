@@ -1,7 +1,7 @@
 from httpx import AsyncClient, MockTransport
 from respx import Router
 
-from app.tba_service import TbaService
+from app.dependencies.tba_service import TbaService
 
 
 async def test_is_tba_healthy_should_be_true_if_response_is_success():
