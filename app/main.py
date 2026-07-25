@@ -4,8 +4,8 @@ from typing import Annotated
 from fastapi import Depends, FastAPI, HTTPException
 from pydantic import BaseModel
 
-from .tba_service import TbaService
 from .settings import RoboGlanceSettings
+from .tba_service import TbaService
 
 app = FastAPI()
 
