@@ -14,4 +14,7 @@ ignore = [
 suppress-none-returning = true
 
 [lint.per-file-ignores]
-"tests/*.py" = ["S101", "PLR2004"]
+"tests/**/test_*.py" = [
+    "S101",    # allow assert statements
+    "PLR2004", # allow comparing to hardcoded values
+]
