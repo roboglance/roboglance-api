@@ -21,7 +21,8 @@ def test_get_settings_should_return_correct_class_instance(
 ):
     get_settings.cache_clear()
     mock_settings_class = mocker.patch(
-        "app.dependencies.settings.RoboGlanceSettings", autospec=True
+        "app.dependencies.settings.RoboGlanceSettings",
+        autospec=True,
     )
     mock_settings_instance = mock_settings_class.return_value
 
@@ -33,7 +34,8 @@ def test_get_settings_called_multiple_times_should_only_call_constructor_once(
 ):
     get_settings.cache_clear()
     mock_settings_class = mocker.patch(
-        "app.dependencies.settings.RoboGlanceSettings", autospec=True
+        "app.dependencies.settings.RoboGlanceSettings",
+        autospec=True,
     )
 
     get_settings()
