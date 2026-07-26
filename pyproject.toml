@@ -31,3 +31,7 @@ strict = true
 addopts = ["--import-mode=importlib"]
 pythonpath = ["."]
 anyio_mode = "auto"
+
+[tool.ty.rules]
+missing-type-argument = "error"
+possibly-unresolved-reference = "warn"
