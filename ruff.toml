@@ -1,5 +1,47 @@
 [lint]
-extend-select = ["ANN", "PYI", "TC"]
+extend-select = [
+    "FAST",  # FastAPI
+    "ANN",   # type Annotations
+    "ASYNC", # asynchronous code
+    "S",     # security
+    "BLE",   # blind except
+    "B",     # bugbear
+    'A',     # builtin shadowing
+    "C4",    # comprehensions
+    "DTZ",   # date time zone
+    "T10",   # debugger
+    "FIX",   # todo comments
+    "ISC",   # implicit string concatenation
+    "LOG",   # logging
+    "G",     # logging format
+    "INP",   # implicit namespace packages
+    "PIE",   # miscellaneous (PIE)
+    "T20",   # print
+    "PYI",   # type hinting
+    "PT",    # PyTest
+    "Q",     # quotes
+    "RET",   # return
+    "SIM",   # simplify
+    "TC",    # type checking
+    "ARG",   # unused arguments
+    "I",     # import sorting
+    "N",     # naming conventions
+    "PERF",  # performance
+    "DOC",   # docstring
+    "F",     # miscellaneous (PyFlakes)
+    "PGH",   # miscellaneous (PyGrep Hooks)
+    "PL",    # Convention (PyLint)
+    "PLE",   # Error (PyLint)
+    "PLR",   # Refactor (PyLint)
+    "PLW",   # Warning (PyLint)
+    "UP",    # upgrade
+    "FURB",  # miscellaneous (Refurb)
+    "RUF",   # miscellaneous (Ruff)
+]
+ignore = ["PT013"]
 
 [lint.flake8-annotations]
 suppress-none-returning = true
+
+[lint.per-file-ignores]
+"tests/*.py" = ["S101", "PLR2004"]
