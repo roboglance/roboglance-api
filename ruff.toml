@@ -1,20 +1,33 @@
 [lint]
 select = ["ALL"]
 ignore = [
+    # Disabled for project-specific reasons
     "PT013",
     "D1",
     "D203",
     "D212",
     "CPY",
-    "E",
-    "W",
+
+    # Disable rules that conflict with ruff format https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
+    "W191",
+    "E501",
+    "E111",
+    "E114",
+    "E117",
+    "D203",
+    "D206",
+    "D300",
+    "Q000",
+    "Q001",
+    "Q002",
+    "Q003",
+    "Q004",
+    "COM812",
+    "COM819",
 ]
 
 [lint.flake8-annotations]
 suppress-none-returning = true
 
 [lint.per-file-ignores]
-"tests/**/test_*.py" = [
-    "S101",
-    "PLR2004",
-]
+"tests/**/test_*.py" = ["S101", "PLR2004"]
