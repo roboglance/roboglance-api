@@ -12,7 +12,7 @@ class RoboGlanceSettings(BaseSettings):
 
 
 @lru_cache
-def get_settings():
+def get_settings() -> RoboGlanceSettings:
     return RoboGlanceSettings()
 
 

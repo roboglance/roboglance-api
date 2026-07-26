@@ -19,7 +19,10 @@ DependencyOverrides = dict[Callable[..., Any], Callable[..., MockType]]
 
 
 @fixture
-def mock_tba_service(mocker: MockFixture, dependency_overrides: DependencyOverrides):
+def mock_tba_service(
+    mocker: MockFixture,
+    dependency_overrides: DependencyOverrides,
+) -> MockType:
     mock = mocker.create_autospec(TbaService, spec_set=True)
     dependency_overrides[TbaService] = lambda: mock
     return mock
