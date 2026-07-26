@@ -53,7 +53,7 @@ jobs:
         run: uv sync --locked
 
       - name: Run linter
-        run: uv run ruff check --output-format=github
+        run: uv run ruff check -v --output-format=github
 
   format:
     name: Ruff format
@@ -75,4 +75,4 @@ jobs:
         run: uv sync --locked
 
       - name: Run formatter
-        run: uv run ruff format --check --output-format=github
+        run: uv run ruff format -v --check --output-format=github
