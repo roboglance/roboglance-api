@@ -3,6 +3,7 @@ from fastapi.responses import PlainTextResponse
 from pydantic import BaseModel
 
 from app.dependencies.tba_service import TbaServiceDependency
+from app.dependencies.team_service import Team, TeamServiceDependency
 
 app = FastAPI(
     generate_unique_id_function=lambda route: route.name,
@@ -34,3 +35,12 @@ async def get_status(
         healthy=tba_healthy,
         the_blue_alliance_healthy=tba_healthy,
     )
+
+
+# TODO @zalhabash: Add ability to find team by name?
+@app.get("/teams/{team_number}")
+async def team_from_number(
+    team_number: int,
+    team_service: TeamServiceDependency,
+) -> Team:
+    return await team_service.find_team(team_number)
