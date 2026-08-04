@@ -75,3 +75,31 @@ def test_team_from_number_should_return_team_when_given_valid_team_number(
     response = test_client.get("/teams/frc/6101")
     assert response.status_code == 200
     assert response.json() == {"team_name": "The Strange Quarks"}
+
+
+def test_team_from_number_should_raise_client_error_when_given_string(
+    test_client: TestClient,
+):
+    response = test_client.get("/teams/frc/sixty-one-oh-one")
+    assert response.is_client_error
+
+
+def test_team_from_number_should_raise_client_error_when_given_valid_team_number_beginning_with_char(
+    test_client: TestClient,
+):
+    response = test_client.get("/teams/frc/a6101]")
+    assert response.is_client_error
+
+
+def test_team_from_number_should_raise_client_error_when_given_valid_team_number_ending_with_char(
+    test_client: TestClient,
+):
+    response = test_client.get("/teams/frc/6101a]")
+    assert response.is_client_error
+
+
+def test_team_from_number_should_raise_client_error_when_given_valid_team_number_containing_char(
+    test_client: TestClient,
+):
+    response = test_client.get("/teams/frc/6a101]")
+    assert response.is_client_error
