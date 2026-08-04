@@ -25,7 +25,7 @@ async def read_status(
 
 
 # TODO @zalhabash: Add ability to find team by name?
-@app.get("/teams/{team_number}")
+@app.get("/teams/frc/{team_number}")
 async def team_from_number(
     team_number: int,
     team_service: TeamServiceDependency,

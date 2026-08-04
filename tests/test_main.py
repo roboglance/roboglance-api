@@ -72,6 +72,6 @@ def test_team_from_number_should_return_team_when_given_valid_team_number(
     mock_team_service.find_team.return_value = Team(
         team_name="The Strange Quarks",
     )
-    response = test_client.get("/teams/6101")
+    response = test_client.get("/teams/frc/6101")
     assert response.status_code == 200
     assert response.json() == {"team_name": "The Strange Quarks"}
