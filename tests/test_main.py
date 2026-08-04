@@ -6,6 +6,7 @@ from pytest import fixture
 from pytest_mock import MockFixture, MockType
 
 from app.dependencies.tba_service import TbaService
+from app.dependencies.team_service import Team, TeamService
 from app.main import app
 
 
@@ -25,6 +26,16 @@ def mock_tba_service(
 ) -> MockType:
     mock = mocker.create_autospec(TbaService, spec_set=True)
     dependency_overrides[TbaService] = lambda: mock
+    return mock
+
+
+@fixture
+def mock_team_service(
+    mocker: MockFixture,
+    dependency_overrides: DependencyOverrides,
+) -> MockType:
+    mock = mocker.create_autospec(TeamService, spec_set=True)
+    dependency_overrides[TeamService] = lambda: mock
     return mock
 
 
@@ -52,3 +63,15 @@ async def test_status_should_not_be_healthy_when_tba_is_not_healthy(
     response = test_client.get("/status")
     assert response.status_code == 200
     assert response.json() == {"healthy": False, "the_blue_alliance_healthy": False}
+
+
+def test_team_from_number_should_return_team_when_given_valid_team_number(
+    test_client: TestClient,
+    mock_team_service: MockType,
+):
+    mock_team_service.find_team.return_value = Team(
+        team_name="The Strange Quarks",
+    )
+    response = test_client.get("/teams/6101")
+    assert response.status_code == 200
+    assert response.json() == {"team_name": "The Strange Quarks"}
