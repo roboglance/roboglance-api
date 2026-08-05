@@ -6,7 +6,7 @@ from pytest import fixture
 from pytest_mock import MockFixture, MockType
 
 from app.dependencies.tba_service import TbaService
-from app.dependencies.team_service import Team, TeamService
+from app.dependencies.team_service import NonExistentTeamError, Team, TeamService
 from app.main import app
 
 
@@ -75,6 +75,25 @@ def test_frc_team_from_number_should_return_team_when_given_existent_team_number
     response = test_client.get("/teams/frc/6101")
     assert response.status_code == 200
     assert response.json() == {"team_name": "The Strange Quarks"}
+
+
+def test_frc_team_from_number_should_raise_client_error_when_given_non_existent_team_number(
+    test_client: TestClient,
+    mock_team_service: MockType,
+):
+    mock_team_service.find_team.side_effect = NonExistentTeamError("Team not found.")
+    response = test_client.get("/teams/frc/0")
+    mock_team_service.find_team.assert_called_once()
+    assert response.status_code == 404
+
+
+def test_frc_team_from_number_should_raise_client_error_when_given_invalid_team_number(
+    test_client: TestClient,
+    mock_team_service: MockType,
+):
+    response = test_client.get("/teams/frc/-6101]")
+    mock_team_service.find_team.assert_not_called()
+    assert response.is_client_error
 
 
 def test_frc_team_from_number_should_raise_client_error_when_given_string(

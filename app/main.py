@@ -1,8 +1,12 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
 from app.dependencies.tba_service import TbaServiceDependency
-from app.dependencies.team_service import Team, TeamServiceDependency
+from app.dependencies.team_service import (
+    NonExistentTeamError,
+    Team,
+    TeamServiceDependency,
+)
 
 app = FastAPI()
 
@@ -24,10 +28,12 @@ async def read_status(
     )
 
 
-# TODO @zalhabash: Add ability to find team by name?
 @app.get("/teams/frc/{team_number}")
 async def team_from_number(
     team_number: int,
     team_service: TeamServiceDependency,
 ) -> Team:
-    return await team_service.find_team(team_number)
+    try:
+        return await team_service.find_team(team_number)
+    except NonExistentTeamError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
