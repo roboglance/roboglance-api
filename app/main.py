@@ -42,7 +42,7 @@ async def get_status(
 
 
 @app.get("/teams/frc/{team_number}")
-async def team_from_number(
+async def get_team(
     team_number: PositiveInt,
     team_service: TeamServiceDependency,
 ) -> Team:
