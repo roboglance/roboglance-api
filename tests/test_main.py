@@ -91,7 +91,7 @@ def test_frc_team_from_number_should_raise_client_error_when_given_invalid_team_
     test_client: TestClient,
     mock_team_service: MockType,
 ):
-    response = test_client.get("/teams/frc/-6101]")
+    response = test_client.get("/teams/frc/-6101")
     mock_team_service.find_team.assert_not_called()
     assert response.is_client_error
 
@@ -109,7 +109,7 @@ def test_frc_team_from_number_should_raise_client_error_when_given_valid_team_nu
     test_client: TestClient,
     mock_team_service: MockType,
 ):
-    response = test_client.get("/teams/frc/a6101]")
+    response = test_client.get("/teams/frc/a6101")
     mock_team_service.find_team.assert_not_called()
     assert response.is_client_error
 
@@ -118,7 +118,7 @@ def test_frc_team_from_number_should_raise_client_error_when_given_valid_team_nu
     test_client: TestClient,
     mock_team_service: MockType,
 ):
-    response = test_client.get("/teams/frc/6101a]")
+    response = test_client.get("/teams/frc/6101a")
     mock_team_service.find_team.assert_not_called()
     assert response.is_client_error
 
@@ -127,6 +127,6 @@ def test_frc_team_from_number_should_raise_client_error_when_given_valid_team_nu
     test_client: TestClient,
     mock_team_service: MockType,
 ):
-    response = test_client.get("/teams/frc/6a101]")
+    response = test_client.get("/teams/frc/6a101")
     mock_team_service.find_team.assert_not_called()
     assert response.is_client_error
