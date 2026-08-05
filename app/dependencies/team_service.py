@@ -8,6 +8,10 @@ class Team(BaseModel):
     team_name: str
 
 
+class NonExistentTeamError(Exception):
+    pass
+
+
 class TeamService:
     async def find_team(self, team_number: int):
         None
