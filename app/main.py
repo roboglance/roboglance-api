@@ -34,6 +34,6 @@ async def get_team(
     team_service: TeamServiceDependency,
 ) -> Team:
     try:
-        return await team_service.find_team(team_number)
+        return await team_service.get_team(team_number)
     except NonExistentTeamError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error

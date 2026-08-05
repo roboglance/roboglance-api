@@ -13,7 +13,7 @@ class NonExistentTeamError(Exception):
 
 
 class TeamService:
-    async def find_team(self, team_number: int):
+    async def get_team(self, team_number: int):
         None
 
 
