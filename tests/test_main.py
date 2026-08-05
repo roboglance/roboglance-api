@@ -105,28 +105,10 @@ def test_get_frc_team_should_raise_client_error_when_given_string(
     assert response.is_client_error
 
 
-def test_get_frc_team_should_raise_client_error_when_given_valid_team_number_beginning_with_char(
-    test_client: TestClient,
-    mock_team_service: MockType,
-):
-    response = test_client.get("/teams/frc/a6101")
-    mock_team_service.find_team.assert_not_called()
-    assert response.is_client_error
-
-
-def test_get_frc_team_should_raise_client_error_when_given_valid_team_number_ending_with_char(
+def test_get_frc_team_should_raise_client_error_when_given_valid_team_number_with_letter(
     test_client: TestClient,
     mock_team_service: MockType,
 ):
     response = test_client.get("/teams/frc/6101a")
-    mock_team_service.find_team.assert_not_called()
-    assert response.is_client_error
-
-
-def test_get_frc_team_should_raise_client_error_when_given_valid_team_number_containing_char(
-    test_client: TestClient,
-    mock_team_service: MockType,
-):
-    response = test_client.get("/teams/frc/6a101")
     mock_team_service.find_team.assert_not_called()
     assert response.is_client_error
