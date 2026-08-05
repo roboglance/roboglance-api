@@ -17,7 +17,7 @@ class RoboGlanceStatus(BaseModel):
 
 
 @app.get("/status")
-async def read_status(
+async def get_status(
     tba_service: TbaServiceDependency,
 ) -> RoboGlanceStatus:
     tba_healthy = await tba_service.is_tba_healthy()
@@ -29,7 +29,7 @@ async def read_status(
 
 
 @app.get("/teams/frc/{team_number}")
-async def team_from_number(
+async def get_team(
     team_number: PositiveInt,
     team_service: TeamServiceDependency,
 ) -> Team:

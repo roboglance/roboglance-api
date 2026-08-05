@@ -65,7 +65,7 @@ async def test_status_should_not_be_healthy_when_tba_is_not_healthy(
     assert response.json() == {"healthy": False, "the_blue_alliance_healthy": False}
 
 
-def test_frc_team_from_number_should_return_team_when_given_existent_team_number(
+def test_get_frc_team_should_return_team_when_given_existent_team_number(
     test_client: TestClient,
     mock_team_service: MockType,
 ):
@@ -77,7 +77,7 @@ def test_frc_team_from_number_should_return_team_when_given_existent_team_number
     assert response.json() == {"team_name": "The Strange Quarks"}
 
 
-def test_frc_team_from_number_should_raise_client_error_when_given_non_existent_team_number(
+def test_get_frc_team_should_raise_client_error_when_given_non_existent_team_number(
     test_client: TestClient,
     mock_team_service: MockType,
 ):
@@ -87,7 +87,7 @@ def test_frc_team_from_number_should_raise_client_error_when_given_non_existent_
     assert response.status_code == 404
 
 
-def test_frc_team_from_number_should_raise_client_error_when_given_invalid_team_number(
+def test_get_frc_team_should_raise_client_error_when_given_invalid_team_number(
     test_client: TestClient,
     mock_team_service: MockType,
 ):
@@ -96,7 +96,7 @@ def test_frc_team_from_number_should_raise_client_error_when_given_invalid_team_
     assert response.is_client_error
 
 
-def test_frc_team_from_number_should_raise_client_error_when_given_string(
+def test_get_frc_team_should_raise_client_error_when_given_string(
     test_client: TestClient,
     mock_team_service: MockType,
 ):
@@ -105,7 +105,7 @@ def test_frc_team_from_number_should_raise_client_error_when_given_string(
     assert response.is_client_error
 
 
-def test_frc_team_from_number_should_raise_client_error_when_given_valid_team_number_beginning_with_char(
+def test_get_frc_team_should_raise_client_error_when_given_valid_team_number_beginning_with_char(
     test_client: TestClient,
     mock_team_service: MockType,
 ):
@@ -114,7 +114,7 @@ def test_frc_team_from_number_should_raise_client_error_when_given_valid_team_nu
     assert response.is_client_error
 
 
-def test_frc_team_from_number_should_raise_client_error_when_given_valid_team_number_ending_with_char(
+def test_get_frc_team_should_raise_client_error_when_given_valid_team_number_ending_with_char(
     test_client: TestClient,
     mock_team_service: MockType,
 ):
@@ -123,7 +123,7 @@ def test_frc_team_from_number_should_raise_client_error_when_given_valid_team_nu
     assert response.is_client_error
 
 
-def test_frc_team_from_number_should_raise_client_error_when_given_valid_team_number_containing_char(
+def test_get_frc_team_should_raise_client_error_when_given_valid_team_number_containing_char(
     test_client: TestClient,
     mock_team_service: MockType,
 ):
