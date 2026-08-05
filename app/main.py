@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import PlainTextResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, PositiveInt
 
 from app.dependencies.tba_service import TbaServiceDependency
 from app.dependencies.team_service import (
@@ -43,7 +43,7 @@ async def get_status(
 
 @app.get("/teams/frc/{team_number}")
 async def team_from_number(
-    team_number: int,
+    team_number: PositiveInt,
     team_service: TeamServiceDependency,
 ) -> Team:
     try:
