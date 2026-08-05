@@ -13,8 +13,8 @@ class NonExistentTeamError(Exception):
 
 
 class TeamService:
-    async def get_team(self, team_number: int):
-        None
+    async def get_team(self, team_number: int) -> Team:
+        raise NotImplementedError("get_team not implemented")
 
 
 TeamServiceDependency = Annotated[TeamService, Depends(TeamService)]
