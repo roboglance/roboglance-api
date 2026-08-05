@@ -82,7 +82,7 @@ def test_frc_team_from_number_should_raise_client_error_when_given_non_existent_
     mock_team_service: MockType,
 ):
     mock_team_service.find_team.side_effect = NonExistentTeamError("Team not found.")
-    response = test_client.get("/teams/frc/0")
+    response = test_client.get("/teams/frc/6101")
     mock_team_service.find_team.assert_called_once()
     assert response.status_code == 404
 
