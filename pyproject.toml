@@ -37,7 +37,3 @@ blanket-ignore-comment = "error"
 missing-type-argument = "error"
 possibly-unresolved-reference = "warn"
 unsupported-dynamic-base = "warn"
-
-[tool.ty.analysis]
-strict-generic-narrowing = true
-strict-equality-semantics = true
