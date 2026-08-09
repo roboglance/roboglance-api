@@ -36,13 +36,13 @@ These instructions are for developing the RoboGlance API in VS Code.
      ```
 1. open http://localhost:8000/docs to test endpoints
 1. run automated tests
-   - Using the "Testing" sidebar in VS Code
+   - using the "Testing" sidebar in VS Code
    - using the terminal
      ```sh
      uv run pytest -v tests
      ```
 1. run type checking
-   - Using the ty VS Code extension
+   - using the ty VS Code extension
    - using the terminal
      ```sh
      uv run ty check
