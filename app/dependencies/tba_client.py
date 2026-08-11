@@ -22,4 +22,4 @@ async def get_tba_client(
         yield tba_client
 
 
-TbaClientDependency = Annotated[AsyncClient, Depends(get_tba_client)]
+type TbaClientDependency = Annotated[AsyncClient, Depends(get_tba_client)]

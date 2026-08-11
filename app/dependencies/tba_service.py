@@ -17,4 +17,4 @@ class TbaService:
         return response.is_success
 
 
-TbaServiceDependency = Annotated[TbaService, Depends(TbaService)]
+type TbaServiceDependency = Annotated[TbaService, Depends(TbaService)]

@@ -16,4 +16,4 @@ def get_settings() -> RoboGlanceSettings:
     return RoboGlanceSettings()
 
 
-SettingsDependency = Annotated[RoboGlanceSettings, Depends(get_settings)]
+type SettingsDependency = Annotated[RoboGlanceSettings, Depends(get_settings)]
