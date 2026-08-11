@@ -1,9 +1,19 @@
+import yaml
 from fastapi import FastAPI
+from fastapi.responses import PlainTextResponse
 from pydantic import BaseModel
 
 from app.dependencies.tba_service import TbaServiceDependency
 
 app = FastAPI()
+
+
+@app.get("/openapi.yaml", include_in_schema=False)
+async def openapi_yaml() -> PlainTextResponse:
+    return PlainTextResponse(
+        content=yaml.dump(app.openapi(), sort_keys=False),
+        media_type="application/yaml",
+    )
 
 
 class RoboGlanceStatus(BaseModel):
