@@ -430,6 +430,7 @@ dependencies = [
     { name = "fastapi-cli" },
     { name = "httpx" },
     { name = "pydantic-settings" },
+    { name = "pyyaml" },
 ]
 
 [package.dev-dependencies]
@@ -447,6 +448,7 @@ requires-dist = [
     { name = "fastapi-cli", specifier = ">=0.0.32" },
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "pydantic-settings", specifier = ">=2.14.2" },
+    { name = "pyyaml", specifier = ">=6.0.3" },
 ]
 
 [package.metadata.requires-dev]
