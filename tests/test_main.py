@@ -1,6 +1,8 @@
+import json
 from collections.abc import Callable
 from typing import Any
 
+import yaml
 from fastapi.testclient import TestClient
 from pytest import fixture
 from pytest_mock import MockFixture, MockType
@@ -32,6 +34,20 @@ def mock_tba_service(
 def test_client():
     with TestClient(app) as client:
         yield client
+
+
+async def test_openapi_yaml_matches_json(test_client: TestClient):
+    yaml_response = test_client.get("/openapi.yaml")
+    assert yaml_response.status_code == 200
+    assert yaml_response.headers["content-type"] == "application/yaml"
+
+    json_response = test_client.get("/openapi.json")
+    assert json_response.status_code == 200
+    assert json_response.headers["content-type"] == "application/json"
+
+    parsed_yaml = yaml.safe_load(yaml_response.text)
+    parsed_json = json.loads(json_response.text)
+    assert parsed_yaml == parsed_json
 
 
 async def test_status_should_be_healthy_when_tba_is_healthy(
