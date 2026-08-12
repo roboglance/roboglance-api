@@ -1,4 +1,3 @@
-import yaml
 from fastapi import FastAPI
 from fastapi.responses import PlainTextResponse
 from pydantic import BaseModel
@@ -10,6 +9,8 @@ app = FastAPI()
 
 @app.get("/openapi.yaml", include_in_schema=False)
 async def openapi_yaml() -> PlainTextResponse:
+    import yaml  # noqa: PLC0415 -- only import bulky yaml library when needed
+
     return PlainTextResponse(
         content=yaml.dump(app.openapi(), sort_keys=False),
         media_type="application/yaml",
