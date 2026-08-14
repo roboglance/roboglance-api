@@ -25,7 +25,7 @@ class RoboGlanceStatus(BaseModel):
 
 
 @app.get("/status")
-async def read_status(
+async def get_status(
     tba_service: TbaServiceDependency,
 ) -> RoboGlanceStatus:
     tba_healthy = await tba_service.is_tba_healthy()
