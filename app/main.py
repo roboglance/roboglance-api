@@ -4,7 +4,9 @@ from pydantic import BaseModel
 
 from app.dependencies.tba_service import TbaServiceDependency
 
-app = FastAPI()
+app = FastAPI(
+    generate_unique_id_function=lambda route: route.name,
+)
 
 
 @app.get("/openapi.yaml", include_in_schema=False)
