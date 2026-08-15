@@ -36,6 +36,13 @@ def test_client():
         yield client
 
 
+async def test_status_endpoint_operation_id(test_client: TestClient):
+    openapi_response = test_client.get("/openapi.json")
+    openapi_response.raise_for_status()
+    openapi = openapi_response.json()
+    assert openapi["paths"]["/status"]["get"]["operationId"] == "get_status"
+
+
 async def test_openapi_yaml_matches_json(test_client: TestClient):
     yaml_response = test_client.get("/openapi.yaml")
     assert yaml_response.status_code == 200
