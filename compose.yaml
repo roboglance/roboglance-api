@@ -5,3 +5,8 @@ services:
     build: .
     ports:
       - "8000:8000"
+    healthcheck:
+      test: python -c 'import httpx; httpx.get("http://localhost:8000/status").raise_for_status()' || exit 1
+      start_period: 5s
+      interval: 5s
+      retries: 12
