@@ -102,4 +102,5 @@ jobs:
         run: docker compose up --build --wait
 
       - name: Tear down Docker Compose
+        if: always()
         run: docker compose down
