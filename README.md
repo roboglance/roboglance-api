@@ -59,3 +59,8 @@ These instructions are for developing the RoboGlance API in VS Code.
      ```sh
      uv run ruff check
      ```
+1. build and run docker image
+   ```sh
+   docker build --tag roboglance-api .
+   docker run --rm --publish 8000:8000 --name roboglance-api roboglance-api
+   ```
