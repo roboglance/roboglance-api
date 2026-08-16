@@ -1,0 +1,7 @@
+name: roboglance
+services:
+  api:
+    container_name: roboglance-api
+    build: .
+    ports:
+      - "8000:8000"
