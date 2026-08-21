@@ -16,3 +16,11 @@ updates:
       day: friday
     commit-message:
       prefix: "build: ⬆️ "
+
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
+      day: friday
+    commit-message:
+      prefix: "build: ⬆️ "
