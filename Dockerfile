@@ -1,7 +1,7 @@
 # Based on https://github.com/astral-sh/uv-docker-example/blob/main/standalone.Dockerfile
 
 # First install dependencies with UV in a builder image
-FROM debian:trixie-slim AS builder
+FROM debian:13.6-slim AS builder
 
 # Copy uv dependencies instead of linking to cache because cache folder is ephemeral
 ENV UV_LINK_MODE=copy
@@ -21,7 +21,7 @@ ENV UV_PYTHON_PREFERENCE=only-managed
 WORKDIR /roboglance-api
 
 # Install uv
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/
+COPY --from=ghcr.io/astral-sh/uv:0.12.5  /uv /bin/
 
 # Install Python
 COPY .python-version .python-version
@@ -39,7 +39,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --locked
 
 # Create a new image that contains the app and dependencies without uv
-FROM debian:trixie-slim
+FROM debian:13.6-slim
 
 # Setup a non-root user
 RUN groupadd --system --gid 999 nonroot \
