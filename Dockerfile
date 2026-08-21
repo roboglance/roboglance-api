@@ -13,15 +13,20 @@ ENV UV_PYTHON_INSTALL_DIR=/python
 # Only use the managed Python version
 ENV UV_PYTHON_PREFERENCE=only-managed
 
-# Install Python before the project for caching
-RUN uv python install 3.12
-
 WORKDIR /roboglance-api
+
+# Install Python
+COPY .python-version .python-version
+RUN uv python install
+
+# Install dependencies
+COPY pyproject.toml pyproject.toml
+COPY uv.lock uv.lock
 RUN --mount=type=cache,target=/root/.cache/uv \
-    --mount=type=bind,source=uv.lock,target=uv.lock \
-    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv sync --locked --no-install-project
-COPY . /roboglance-api
+
+# Install project
+COPY app app
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --locked
 
