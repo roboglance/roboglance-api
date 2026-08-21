@@ -5,6 +5,8 @@ services:
     build: .
     ports:
       - "8000:8000"
+    environment:
+      ROBOGLANCE_TBA_API_KEY: ${ROBOGLANCE_TBA_API_KEY}
     healthcheck:
       test:
         - CMD
