@@ -90,6 +90,8 @@ jobs:
   docker:
     name: Docker
     runs-on: ubuntu-latest
+    env:
+      ROBOGLANCE_TBA_API_KEY: Github Actions fake TBA API key
 
     steps:
       - name: Checkout
