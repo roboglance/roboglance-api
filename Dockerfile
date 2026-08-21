@@ -1,6 +1,6 @@
 # Based on https://github.com/astral-sh/uv-docker-example/blob/main/standalone.Dockerfile
 
-# First, build the application in the `/app` directory
+# First install dependencies with UV in a builder image
 FROM ghcr.io/astral-sh/uv:trixie-slim AS builder
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
 
@@ -30,7 +30,7 @@ COPY app app
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --locked
 
-# Then, use a final image without uv
+# Create a new image that contains the app and dependencies without uv
 FROM debian:trixie-slim
 
 # Setup a non-root user
