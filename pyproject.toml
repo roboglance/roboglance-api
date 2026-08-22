@@ -35,6 +35,7 @@ anyio_mode = "auto"
 
 [tool.ty.rules]
 blanket-ignore-comment = "error"
+dynamic-function-decorator-return = "warn"
 missing-type-argument = "error"
 possibly-unresolved-reference = "warn"
 unsound-assignment = "warn"
