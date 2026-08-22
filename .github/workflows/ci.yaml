@@ -97,17 +97,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Set up Docker
-        id: setup-docker
-        uses: docker/setup-docker-action@77e84dbf09b47d1e29270283c22f16145aa85ca1 # v5.4.0
-
       - name: Run Docker Compose
         run: docker compose up --build --wait
 
       - name: Get Docker Compose logs
-        if: "!cancelled() && steps.setup-docker.outcome == 'success'"
+        if: "!cancelled()"
         run: docker compose logs
 
       - name: Tear down Docker Compose
-        if: "!cancelled() && steps.setup-docker.outcome == 'success'"
+        if: "!cancelled()"
         run: docker compose down
