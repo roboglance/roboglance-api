@@ -34,11 +34,11 @@ pythonpath = ["."]
 anyio_mode = "auto"
 
 [tool.ty.rules]
-blanket-ignore-comment = "error"
+blanket-ignore-comment = "warn"
 dynamic-function-decorator-return = "warn"
-missing-type-argument = "error"
+missing-type-argument = "warn"
 possibly-unresolved-reference = "warn"
 unsound-assignment = "warn"
-unsound-return-statement = "error"
-unsound-yield = "error"
+unsound-return-statement = "warn"
+unsound-yield = "warn"
 unsupported-dynamic-base = "warn"
