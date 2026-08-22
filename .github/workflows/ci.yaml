@@ -86,3 +86,24 @@ jobs:
 
       - name: Run formatter
         run: uv run ruff format -v --check --output-format=github
+
+  docker:
+    name: Docker
+    runs-on: ubuntu-latest
+    env:
+      ROBOGLANCE_TBA_API_KEY: Github Actions fake TBA API key
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Run Docker Compose
+        run: docker compose up --build --wait
+
+      - name: Get Docker Compose logs
+        if: "!cancelled()"
+        run: docker compose logs
+
+      - name: Tear down Docker Compose
+        if: "!cancelled()"
+        run: docker compose down

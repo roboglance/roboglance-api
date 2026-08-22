@@ -1,0 +1,18 @@
+name: roboglance
+services:
+  api:
+    container_name: roboglance-api
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      ROBOGLANCE_TBA_API_KEY: ${ROBOGLANCE_TBA_API_KEY}
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - import httpx; httpx.get("http://localhost:8000/status").raise_for_status()
+      start_period: 5s
+      interval: 5s
+      retries: 12
