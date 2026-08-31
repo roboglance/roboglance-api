@@ -1,7 +1,8 @@
 from fastapi.testclient import TestClient
 from pytest_mock import MockType
 
-from app.dependencies.team_service import NonExistentTeamError, Team
+from app.dependencies.team_service import Team
+from app.errors import NonexistentTeamError
 
 
 def test_get_frc_team_should_return_team_when_given_existent_team_number(
@@ -20,7 +21,7 @@ def test_get_frc_team_should_raise_client_error_when_given_non_existent_team_num
     test_client: TestClient,
     mock_team_service: MockType,
 ):
-    mock_team_service.get_team.side_effect = NonExistentTeamError("Team not found.")
+    mock_team_service.get_team.side_effect = NonexistentTeamError("Team not found.")
     response = test_client.get("/teams/frc/6101")
     mock_team_service.get_team.assert_called_once()
     assert response.status_code == 404
