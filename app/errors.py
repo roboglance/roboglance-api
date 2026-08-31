@@ -1,0 +1,2 @@
+class NonexistentTeamError(Exception):
+    pass

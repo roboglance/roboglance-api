@@ -3,10 +3,10 @@ from fastapi.routing import APIRouter
 from pydantic import PositiveInt
 
 from app.dependencies.team_service import (
-    NonExistentTeamError,
     Team,
     TeamServiceDependency,
 )
+from app.errors import NonexistentTeamError
 
 router = APIRouter(prefix="/teams")
 
@@ -18,5 +18,5 @@ async def get_team(
 ) -> Team:
     try:
         return await team_service.get_team(team_number)
-    except NonExistentTeamError as error:
+    except NonexistentTeamError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
