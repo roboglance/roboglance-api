@@ -1,7 +1,7 @@
 # Based on https://github.com/astral-sh/uv-docker-example/blob/main/standalone.Dockerfile
 
 # First install dependencies with UV in a builder image
-FROM debian:13.6-slim AS builder
+FROM debian:13.7-slim AS builder
 
 # Copy uv dependencies instead of linking to cache because cache folder is ephemeral
 ENV UV_LINK_MODE=copy
@@ -39,7 +39,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --locked
 
 # Create a new image that contains the app and dependencies without uv
-FROM debian:13.6-slim
+FROM debian:13.7-slim
 
 # Setup a non-root user
 RUN groupadd --system --gid 999 nonroot \
