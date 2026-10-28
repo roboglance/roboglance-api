@@ -17,7 +17,7 @@ def dependency_overrides():
     app.dependency_overrides = {}
 
 
-DependencyOverrides = dict[Callable[..., Any], Callable[..., MockType]]
+type DependencyOverrides = dict[Callable[..., Any], Callable[..., MockType]]
 
 
 @fixture
