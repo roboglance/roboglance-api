@@ -32,7 +32,7 @@ class TbaService:
     async def get_team(self, team_number: int) -> TbaTeam:
         response = await self._tba_client.get(f"/team/frc{team_number}")
         if response.status_code == HTTPStatus.NOT_FOUND:
-            raise NonexistentTeamError
+            raise NonexistentTeamError(team_number)
         response.raise_for_status()
         return TbaTeam.model_validate(response.json())
 

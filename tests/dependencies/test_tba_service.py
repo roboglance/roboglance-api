@@ -75,7 +75,7 @@ async def test_get_team_returns_nonexistent_team():
         transport=MockTransport(router.async_handler),
     ) as mock_tba_client:
         tba_service = TbaService(mock_tba_client)
-        with raises(NonexistentTeamError):
+        with raises(NonexistentTeamError, match=r"Team number 6101 not found\."):
             await tba_service.get_team(6101)
         router.assert_all_called()
 
